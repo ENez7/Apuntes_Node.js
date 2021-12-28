@@ -1,4 +1,4 @@
-function hola(nombre) {
+async function hola(nombre) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             console.log('Hola ' + nombre);
@@ -7,7 +7,7 @@ function hola(nombre) {
     });
 }
 
-function adios(nombre) {
+async function adios(nombre) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             console.log('Adios ' + nombre);
@@ -16,27 +16,27 @@ function adios(nombre) {
     });
 }
 
-function hablar(nombre){
+async function hablar(nombre){
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             console.log('Bla bla bla');
-            //resolve(nombre);
-            reject(nombre);  // if must resolve or reject
+            resolve(nombre);
+            //reject(nombre);  // if must resolve or reject
         }, 1000);
     });
 }
 
 // --------------------------------------------------
+async function main() {
+    await hola('Juan');
+    for(var i=0; i<3; i++){
+        await hablar();
+    }
+    await adios('Juan');
+    console.log('Terminado el proceso');
+}
+
+
+// Trying async/await with promises
 console.log('Iniciando el proceso');
-hola('Juan')
-    .then(hablar)
-    .then(hablar)
-    .then(hablar)
-    .then(adios)
-    .then((nombre) => {
-        console.log('Terminado el proceso');
-    })
-    .catch((error) => {
-        console.log('Error en el proceso');
-        console.error(error);
-    });
+main();
