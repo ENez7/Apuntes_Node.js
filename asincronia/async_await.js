@@ -36,7 +36,6 @@ async function main() {
     console.log('Terminado el proceso');
 }
 
-
 // Trying async/await with promises
 console.log('Iniciando el proceso');
 main();
